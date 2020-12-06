@@ -1,0 +1,69 @@
+{% extends 'base.html' %} {% block header %}
+<div class="jumbotron text-center">
+    <h1 class="display-4"><a href="{% url 'list' %}">TodoList</a></h1>
+    <p class="lead">This is a simple TodoList.</p>
+</div>
+{% endblock header %} {% block content %} {% if user.is_authenticated %}
+
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create a Todo</h1>
+                        </div>
+                        <form class="user" action='' method='POST'>{% csrf_token %}
+                            <div class="form-group row">
+                                <div class="col-sm-12 mb-3">
+                                    <label>タイトル
+										<p>{{ form.title }}</p></label>
+                                </div>
+                                <div class="col-sm-12 mb-3">
+                                    <label for="memo">内容
+										<p>{{ form.memo }}</p></label>
+                                </div>
+                                <div class=" col-sm-12 mb-3">
+                                    <label for="priority">重要度
+										<p>{{ form.priority }}</p></label>
+                                </div>
+                                <div class="col-sm-12 mb-3">
+                                    <label for="duedate">期限
+										<p>{{ form.duedate }}</p></label>
+                                </div>
+                                <div class="col-sm-12 mb-3">
+                                    <label for="progress">進捗度
+										<p>{{ form.progress }}</p></label>
+                                </div>
+                                <div class="col-sm-12 mb-3 ml-4">
+
+                                    <label for="complete" class="form-check-label">完了 <p>{{ form.complete }}</p>
+									</label>
+                                </div>
+                                <div> <input type="hidden" name="auther" value="{{ user.username }}"></div>
+                            </div>
+                            <input type='submit' value="更新する" class="btn btn-primary btn-user btn-block">
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <p class="text-center"><a class="btn btn-outline-primary" href="{% url 'list' %}" role="button">戻る</a>
+                            </p>
+                            {% else %}
+                            <hr>
+                            <a href="{% url 'login' %}" class="btn btn-danger btn-user btn-block">
+								login
+							</a> {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

@@ -1,14 +1,19 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.contrib.auth import authenticate, login
-from django.views.generic import ListView
+from django.contrib.auth import authenticate, login, logout
 from .models import TodoModel
-from django.http import HttpResponse
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.urls import reverse_lazy
 
 
 class TodoList(ListView):
     template_name = 'index.html'
+    model = TodoModel
+
+
+class TodoDetail(DetailView):
+    template_name = 'detail.html'
     model = TodoModel
 
 
@@ -37,3 +42,30 @@ def loginview(request):
         else:
             return redirect('login')
     return render(request, 'login.html')
+
+
+class TodoCreate(CreateView):
+    template_name = 'create.html'
+    model = TodoModel
+    fields = ('title', 'memo', 'auther', 'priority',
+              'progress', 'duedate', 'complete')
+    success_url = reverse_lazy('list')
+
+
+class TodoDelete(DeleteView):
+    template_name = 'delete.html'
+    model = TodoModel
+    success_url = reverse_lazy('list')
+
+
+class TodoUpdate(UpdateView):
+    template_name = 'update.html'
+    model = TodoModel
+    fields = ('title', 'memo', 'auther', 'priority',
+              'progress', 'duedate', 'complete')
+    success_url = reverse_lazy('list')
+
+
+def logoutview(request):
+    logout(request)
+    return redirect('login')

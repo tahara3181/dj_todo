@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block header %}
+<div class="jumbotron text-center">
+    <h1 class="display-4"><a href="{% url 'list' %}">TodoList</a></h1>
+    <p class="lead">This is a simple TodoList.</p>
+</div>
+{% endblock header %} {% block content %}
+<div class="alert alert-primary" role="alert">
+    <p><span>タイトル：</span>{{ object.title }}</p>
+    <p><span>内容：</span>{{ object.memo }}</p>
+    <p><span>期日：</span>{{ object.duedate }}</p>
+    <p><span>進捗度：</span>{{ object.progress }}%</p>
+</div>
+<p class="text-center"><a class="btn btn-outline-primary" href="{% url 'list' %}" role="button">戻る</a></p>
+{% endblock content %}

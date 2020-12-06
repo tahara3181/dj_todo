@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block header %}
+<div class="jumbotron text-center">
+    <h1 class="display-4"><a href="{% url 'list' %}">TodoList</a></h1>
+    <p class="lead">This is a simple TodoList.</p>
+</div>
+{% endblock header %} {% block content %} {% if user.is_authenticated %}
+<p>選択したタスクを削除します。</p>
+<form action="" method="POST">{% csrf_token %}
+    <input type="submit" value="削除します">
+</form>
+<p class="text-center"><a class="btn btn-outline-primary" href="{% url 'list' %}" role="button">戻る</a></p>
+{% else %} ログインしてください。
+<a href="{% url 'login' %}" class="btn btn-primary" role="button" aria-pressed="true">ログイン</a> {% endif %} {% endblock content %}

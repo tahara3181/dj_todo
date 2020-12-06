@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% load static %} {% block header %}
+<div class="jumbotron text-center">
+    <h1 class="display-4"><a href="{% url 'list' %}">TodoList</a></h1>
+    <p class="lead">This is a simple TodoList.</p>
+</div>
+{% endblock header %} {% block content %} {% if user.is_authenticated %}
+
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create a Todo</h1>
+                        </div>
+                        <form class="user" action='' method='POST'>{% csrf_token %}
+                            <div class="form-group row">
+                                <div class="col-sm-12 mb-3">
+                                    <label for="title">タイトル</label>
+                                    <input type="text" class="form-control form-control-user" id="title" name="title" placeholder="title">
+                                </div>
+                                <div class="col-sm-12 mb-3">
+                                    <label for="memo">内容</label>
+                                    <textarea name='memo' class="form-control" id="memo" rows="3"></textarea>
+                                </div>
+                                <div class=" col-sm-12 mb-3">
+                                    <label for="priority">重要度</label>
+                                    <select class="form-control" name="priority" id="priority">
+                    <option value="danger">high</option>
+                    <option value="warning">normal</option>
+                    <option value="success">low</option>
+                  </select>
+                                </div>
+                                <div class="col-sm-12 mb-3">
+                                    <label for="duedate">期限</label>
+                                    <input type="text" class="form-control form-control-user" id="duedate" name="duedate" value="2025-01-11">
+                                </div>
+                                <div class="col-sm-12 mb-3">
+                                    <label for="progress">進捗度</label>
+                                    <input type="range" class="form-control form-control-user" id="progress" name="progress" min="0" max="100">
+                                </div>
+                                <div class="col-sm-12 mb-3 ml-4">
+                                    <input type="checkbox" class="form-check-input" id="complete" name="complete" value=False>
+                                    <label for="complete" class="form-check-label">完了</label>
+                                </div>
+                                <div> <input type="hidden" name="auther" value="{{ user.username }}"></div>
+                            </div>
+                            <input type='submit' value="作成する" class="btn btn-primary btn-user btn-block">
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <p class="text-center"><a class="btn btn-outline-primary" href="{% url 'list' %}" role="button">戻る</a>
+                            </p>
+                            {% else %}
+                            <hr>
+                            <a href="{% url 'login' %}" class="btn btn-danger btn-user btn-block">
+                login
+              </a> {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
