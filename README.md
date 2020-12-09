@@ -4,7 +4,8 @@
 
 ## 仮想環境作成(venv)
 
-1. 仮想環境  `venv` 作成のためのコマンド
+1. 仮想環境  `venv` 作成のためのコマンド  
+注意：Macの場合は python3としてください。
 
 ```
 python -m venv dj_todo
@@ -59,16 +60,32 @@ python -m pip install --upgrade pip
 ```
 
 
+仮想環境に入るとMacの場合でも、python3ではなくpythonコマンドが使えるようになります。
+
+また、pipもpip3ではなくpipが使えるようになります。
+
+バージョンなどを確認して正しくこれらのコマンドが使えるか確認してください。
+
+```
+python -V
+```
+
+```
+pip -V
+```
+
+
+
 
 ## Djangoのインストール
 
-Djangoインストールコマンド
+Djangoインストールコマンド  
 
 ```
 pip install django
 ```
 
-Djangoのバージョン確認コマンド
+Djangoのバージョン確認コマンド  
 
 ```
 python -m django --version
@@ -96,7 +113,7 @@ django-admin startproject todoproject .
 
 ### アプリケーションの作成
 
-1. アプリケーション作成コマンド
+1. アプリケーション作成コマンド  
 
 ```
 python manage.py startapp todo
@@ -861,7 +878,7 @@ def loginview(request):
                             password=password_data)
         if user is not None:
             login(request, user)
-            return redirect('list')
+            return redirect('list')  #今の段階では機能しない
         else:
             return redirect('login')
     return render(request, 'login.html')
@@ -941,7 +958,7 @@ git push -u origin HEAD
 
 1. from import文に`TodoList`を追加、そして todoを削除
 2. urlpatternsの`path('test/', todo)`を削除
-3. urlpatternsに`path('login/', loginview, name='login'),`を追加
+3. urlpatternsに`path('', TodoList.as_view(), name='list'),`を追加
 
 ```
 from django.urls import path
