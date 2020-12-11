@@ -13,11 +13,11 @@ python -m venv dj_todo
 
 2. `cd`コマンドで出来上がったフォルダ（ここではdj_todo）に移動
 
-   ```
-   cd dj_todo
-   ```
+```
+cd dj_todo
+```
 
-3. 以下の仮想環境を実行するコマンドを実行（MacとWindowsでコマンドは違うので注意）
+1. 以下の仮想環境を実行するコマンドを実行（MacとWindowsでコマンドは違うので注意）
 
 #### Macの場合
 
@@ -2642,28 +2642,37 @@ git commit
 ### Heroku CLIをインストール
 
 1. MAC の場合
-   Heroku CLIをインストールする必要があります。
+   Home brewでインストールします。
 
+   HomebrewはMACのパッケージマネージャーです。
+   
+   これをインストールしておけばPythonも複数のバージョンをインストールできるようになります。
+
+   
+   
+まずはHome brewをインストールします。
+   
+   https://brew.sh/index_ja
+   
+Homebrewのページからインストールのところに表示されているコードをターミナルで実行します。
+   
+```
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
-   https://devcenter.heroku.com/articles/heroku-cli
-   ```
-
-   からダウンロードしてインストールします。
-   参考：HomeBrewでインストールする場合は以下コマンドです。
-
+   
+   Homebrewがインストールされたら以下コマンドでHeroku CLIをインストールします。
+   
    ```
    brew install heroku/brew/heroku
    ```
-
    
-
+   
+   
 2. Windowsの場合
    次のURLのページからWindows用のインストーラーをダウンロードしてインストールします。
    インストーラーのチェックはそのままチェックが入った状態でNextボタンで進みインストールします。
 
-   ```
    https://devcenter.heroku.com/articles/heroku-cli
-   ```
 
 ここでパワーシェルまたはターミナルを再起動
 
@@ -2788,10 +2797,6 @@ error: failed to push some refs to 'https://git.heroku.com/todo-lesson2.git'
 ```
 git config http.postBuffer 10485760
 ```
-
-
-
-
 
 ### Heroku上でmigrateが必要
 
