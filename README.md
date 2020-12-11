@@ -2346,13 +2346,13 @@ git checkout master
 
 1. TODOPROJECTフォルダにcdで移動して、次のコマンドを実行
 
-2. dj-database-urlのインストール
+2. dj-database-urlのインストール(今回は不要)
 
 ```
 pip install dj-database-url gunicorn whitenoise
 ```
 
-3. psycopgのインストール
+3. psycopgのインストール（今回は不要）
 
    **Macではエラーになるので注意**
 
@@ -2360,7 +2360,7 @@ pip install dj-database-url gunicorn whitenoise
 pip install psycopg2
 ```
 
-4. **MACでpsycopg2のインストールでエラーが出た場合**、
+4. **MACでpsycopg2のインストールでエラーが出た場合**（今回は不要）
    psycopg2-binaryのインストール
 
 ```
@@ -2378,6 +2378,7 @@ pip freeze > requirements.txt
 ```
 
 2. 実行後出来た `requirements.txt` の内容の例
+   今回はこれを使います。
 
 ```
 asgiref==3.2.10
